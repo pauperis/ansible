@@ -1,6 +1,13 @@
 ---
 - hosts: a23_alumnes
   become: yes
+
+  handlers:
+    - name: restart sshd
+      service:
+        name: sshd
+        state: restarted
+
   tasks:
   - name: Disable SSH Password Authentication on the SSH server
     replace:
@@ -11,7 +18,7 @@
     lineinfile:
       path: /etc/ssh/sshd_config
       state: present
-      regexp: '^AllowUsers=root,pau'
-      line: 'AllowUsers=root,pau'
-#    notify:
-#      - restart sshd
+      regexp: '^AllowUsers=root pau'
+      line: 'AllowUsers=root pau'
+    notify:
+      - restart sshd
