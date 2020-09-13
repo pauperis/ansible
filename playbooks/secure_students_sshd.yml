@@ -1,0 +1,17 @@
+---
+- hosts: a23_alumnes
+  become: yes
+  tasks:
+  - name: Disable SSH Password Authentication on the SSH server
+    replace:
+      dest: /etc/ssh/sshd_config
+      regexp: '^#PasswordAuthentication yes'
+      replace: 'PasswordAuthentication no'
+  - name: Adds root and pau users to the AllowUsers list on the SSH server
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: '^AllowUsers=root,pau'
+      line: 'AllowUsers=root,pau'
+#    notify:
+#      - restart sshd
