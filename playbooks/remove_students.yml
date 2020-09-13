@@ -1,0 +1,13 @@
+---
+- hosts: a23_alumnes
+  become: yes
+  vars_files:
+    - users/students.yml
+  tasks:
+  - name: Remove students
+    user:
+      name: "{{ item.name }}"
+      state: absent
+      remove: yes
+      force: yes
+    with_items: "{{  students  }}"
