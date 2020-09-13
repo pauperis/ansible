@@ -1,0 +1,13 @@
+---
+    students:
+        - name: smx
+          pass: smx
+          state: present
+
+        - name: smx2
+          pass: smx2
+          state: present
+
+        - name: arduino
+          pass: arduino
+          state: present
