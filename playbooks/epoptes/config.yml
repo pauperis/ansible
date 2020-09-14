@@ -1,0 +1,12 @@
+---
+    epoptes:
+        server:
+            ip: 192.168.0.1
+            hostname: dedede
+            system_group_name: epoptes
+            administrators: pau
+    service:
+        client:
+            install_cmd: apt-get -y install --install-recommends epoptes-client
+            name: epoptes-client
+            config: /etc/default/epoptes-client
