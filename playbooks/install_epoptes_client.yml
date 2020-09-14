@@ -8,7 +8,7 @@
     apt:
       update_cache: yes
 
-  - name: Install epoptes through custom command
+  - name: Install epoptes client through custom command
     command: apt-get -y install --install-recommends epoptes-client
     register: apt_install
 
