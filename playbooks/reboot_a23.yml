@@ -1,0 +1,8 @@
+---
+- hosts: a23_alumnes
+  become: yes
+  user: root
+
+  tasks:
+    - name: Reboot computer
+      command: init 6
