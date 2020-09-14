@@ -1,9 +1,24 @@
 ---
 - hosts: a23_alumnes
   become: yes
+
   vars_files:
     - users/students.yml
+
   tasks:
+  - name: Check if lightdm service exists (stat module)
+    stat: path=/etc/init.d/lightdm
+    register: service_stat
+
+  - name: Check if lightdm service exists (service module)
+    service: name=lightdm
+    register: service
+
+  - name: Stop lightdm service
+    service: name=lightdm state=stopped
+    when: service_stat.stat.exists and service.status.SubState == 'running'
+    register: service_stopped
+
   - name: Remove students
     user:
       name: "{{ item.name }}"
@@ -11,3 +26,10 @@
       remove: yes
       force: yes
     with_items: "{{  students  }}"
+
+  - name: Start lightdm service
+    service:
+      name: lightdm
+      state: started
+    when: service_stat.stat.exists and service.status.SubState == 'Dead'
+    register: service_started
