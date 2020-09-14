@@ -1,0 +1,22 @@
+---
+- hosts: a23_professors
+  become: yes
+
+  tasks:
+
+  - name: Update repositories cache
+    apt:
+      update_cache: yes
+
+  - name: Install epoptes server through custom command
+    command: apt-get -y install --install-recommends epoptes
+    register: apt_install
+
+  - name: Check if epoptes service exists
+    service: name=epoptes
+    register: service
+
+  - name: Add regular users to epoptes group
+    when: service.status.LoadState == 'loaded'
+    command: gpasswd -a pau epoptes
+    register: gpasswd
