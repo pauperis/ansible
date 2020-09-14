@@ -1,0 +1,38 @@
+---
+- hosts: a23_alumnes
+  become: yes
+
+  tasks:
+
+  - name: Update repositories cache
+    apt:
+      update_cache: yes
+
+  - name: Install epoptes through custom command
+    command: apt-get -y install --install-recommends epoptes-client
+    register: apt_install
+
+  - name: Check if epoptes-client service exists
+    service: name=epoptes-client
+    register: service
+
+  - name: Add default Epoptes SERVER value to /etc/default/epoptes-client
+    when: service.status.LoadState == 'loaded'
+    lineinfile:
+      path: /etc/default/epoptes-client
+      state: present
+      regexp: '^SERVER=dedede'
+      line: 'SERVER=dedede'
+
+  - name: Add default Epoptes SERVER IP address and hostname to /etc/hosts
+    when: service.status.LoadState == 'loaded'
+    lineinfile:
+      path: /etc/hosts
+      state: present
+      regexp: '^192.168.0.11 server dedede'
+      line: '192.168.0.11 server dedede'
+
+  - name: Fetch the OpenSSL certificate from the server
+    when: service.status.LoadState == 'loaded'
+    command: cd && epoptes-client -c
+    register: epoptes_fetch_SSL_cert
