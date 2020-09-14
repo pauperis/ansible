@@ -3,8 +3,10 @@
   become: yes
   vars_files:
     - users/students.yml
+
   tasks:
-  - name: Create a login user
+
+  - name: Create student's regular users
     user:
       name: "{{ item.name }}"
       # mkpasswd --method=sha-512
@@ -18,3 +20,16 @@
       createhome: yes        # Defaults to yes
       home: /home/{{ item.name }}       # Defaults to /home/<username>
     with_items: "{{  students  }}"
+
+  - name: Check if lightdm service exists (stat module)
+    stat: path=/etc/init.d/lightdm
+    register: service_stat
+
+  - name: Check if lightdm service exists (service module)
+    service: name=lightdm
+    register: service
+
+  - name: Restart lightdm service if exists and is running
+    service: name=lightdm state=restarted
+    when: service_stat.stat.exists and service.status.SubState == 'running'
+    register: service_started
