@@ -1,0 +1,7 @@
+  - name: Remove students
+    user:
+      name: "{{ item.name }}"
+      state: absent
+      remove: yes
+      force: yes
+    with_items: "{{  students  }}"
