@@ -1,5 +1,5 @@
 ---
-- hosts: a23_alumnes
+- hosts: a27-alumnes
   become: yes
 
   tasks:
@@ -21,16 +21,16 @@
     lineinfile:
       path: /etc/default/epoptes-client
       state: present
-      regexp: '^SERVER=dedede'
-      line: 'SERVER=dedede'
+      regexp: '^SERVER=smx-HP-Compaq-8200-Elite-SFF-PC'
+      line: 'SERVER=smx-HP-Compaq-8200-Elite-SFF-PC'
 
   - name: Add default Epoptes SERVER IP address and hostname to /etc/hosts
     when: service.status.LoadState == 'loaded'
     lineinfile:
       path: /etc/hosts
       state: present
-      regexp: '^192.168.0.11 server dedede'
-      line: '192.168.0.11 server dedede'
+      regexp: '^192.168.3.35 server smx-HP-Compaq-8200-Elite-SFF-PC'
+      line: '192.168.3.35 server smx-HP-Compaq-8200-Elite-SFF-PC'
 
   - name: Fetch the OpenSSL certificate from the server
     when: service.status.LoadState == 'loaded'
