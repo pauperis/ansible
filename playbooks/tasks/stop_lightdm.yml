@@ -1,0 +1,12 @@
+  - name: Check if lightdm service exists (stat module)
+    stat: path=/etc/init.d/lightdm
+    register: service_stat
+
+  - name: Check if lightdm service exists (service module)
+    service: name=lightdm
+    register: service
+
+  - name: Stop lightdm service
+    service: name=lightdm state=stopped
+    when: service_stat.stat.exists and service.status.SubState == 'running'
+    register: service_stopped
