@@ -1,0 +1,7 @@
+---
+- hosts: a27-alumnes
+  become: yes
+
+  tasks:
+    - name: Freeing space on the whole system
+      shell: rm -fr /root/VirtualBox\ VMs /root/Desktop /root/documents /root/Downloads /timeshift
