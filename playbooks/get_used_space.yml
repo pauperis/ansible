@@ -1,0 +1,16 @@
+---
+- hosts: a27-alumnes
+  become: yes
+
+  tasks:
+    - name: Get / used space (human readable)
+      shell: df -H / --output\=used | tail -1
+      register: root_freespace_human
+
+    - name: Get / used space (bytes)
+      shell: df / --output\=used | tail -1
+      register: root_freespace
+      
+    - debug:
+        msg: / used space is {{ root_freespace_human.stdout }}.
+      when: root_freespace.stdout|float is gt 10000000
