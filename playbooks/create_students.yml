@@ -1,5 +1,5 @@
 ---
-- hosts: a23_alumnes
+- hosts: a27-alumnes
   become: yes
   vars_files:
     - users/students.yml
