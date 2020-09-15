@@ -1,0 +1,7 @@
+---
+- hosts: a27-alumnes
+  become: yes
+
+  tasks:
+  - import_tasks: tasks/update_local_repositories_cache.yml
+  - import_tasks: tasks/install_epoptes_client.yml
