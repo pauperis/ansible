@@ -6,38 +6,6 @@
     - users/students.yml
 
   tasks:
-  - name: Check if lightdm service exists (stat module)
-    stat: path=/etc/init.d/lightdm
-    register: service_stat
-
-  - name: Check if lightdm service exists (service module)
-    service: name=lightdm
-    register: service
-
-  - name: Stop lightdm service
-    service: name=lightdm state=stopped
-    when: service_stat.stat.exists and service.status.SubState == 'running'
-    register: service_stopped
-
-  - name: Remove students
-    user:
-      name: "{{ item.name }}"
-      state: absent
-      remove: yes
-      force: yes
-    with_items: "{{  students  }}"
-
-  - name: Check if lightdm service exists (stat module)
-    stat: path=/etc/init.d/lightdm
-    register: service_stat2
-
-  - name: Check if lightdm service exists (service module)
-    service: name=lightdm
-    register: service2
-
-  - name: Start lightdm service if exists and is stopped
-    service:
-      name: lightdm
-      state: started
-    when: service_stat2.stat.exists and service2.status.SubState == 'dead'
-    register: service_started
+  - import_tasks: tasks/stop_lightdm.yml
+  - import_tasks: tasks/remove_students.yml
+  - import_tasks: tasks/start_lightdm.yml
