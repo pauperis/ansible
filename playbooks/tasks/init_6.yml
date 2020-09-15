@@ -1,0 +1,4 @@
+    command: init 6
+    async: 0
+    poll: 0
+    ignore_errors: yes
