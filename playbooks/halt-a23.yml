@@ -1,8 +1,0 @@
----
-- hosts: a23_alumnes
-  become: yes
-  user: root
-
-  tasks:
-    - name: Halt computer (init 0)
-      command: init 0
