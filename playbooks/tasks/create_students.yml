@@ -1,0 +1,16 @@
+  - name: Create student's regular users
+    user:
+      name: "{{ item.name }}"
+      # mkpasswd --method=sha-512
+      password: "{{ item.pass | password_hash('sha512') }}"
+#      groups: # Empty by default, here we give it some groups
+#       - docker
+#       - sudo
+      state: present
+      shell: /bin/bash       # Defaults to /bin/bash
+      system: no             # Defaults to no
+      createhome: yes        # Defaults to yes
+      home: /home/{{ item.name }}       # Defaults to /home/<username>
+    with_items: "{{  students  }}"
+
+  - import_tasks: restart_lightdm.yml
