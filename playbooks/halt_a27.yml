@@ -4,8 +4,4 @@
 #  user: root
 
   tasks:
-    - name: Halt computer (init 0)
-      command: init 0
-      async: 0
-      poll: 0
-      ignore_errors: yes
+  - import_tasks: tasks/init_0.yml
