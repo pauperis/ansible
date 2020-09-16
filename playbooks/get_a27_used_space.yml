@@ -1,0 +1,6 @@
+---
+- hosts: a27-alumnes
+  become: yes
+
+  tasks:
+  - import_tasks: tasks/free_space.yml
