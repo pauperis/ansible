@@ -1,0 +1,6 @@
+---
+    root_user:
+        - name: root
+          username: root
+          password: __coord21
+          home_dir: /root
