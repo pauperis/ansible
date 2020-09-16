@@ -1,0 +1,3 @@
+- name: Desinstalación de paquetes
+  action: apt pkg={{ item.name }} state=absent
+  with_items: "{{  packages  }}"
