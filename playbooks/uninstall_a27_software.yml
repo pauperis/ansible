@@ -1,0 +1,8 @@
+---
+- hosts: a27-alumnes
+  become: yes
+  vars_files:
+    - data/uninstall_packages.yml
+
+  tasks:
+  - import_tasks: tasks/uninstall_packages.yml
