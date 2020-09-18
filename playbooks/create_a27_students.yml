@@ -6,4 +6,6 @@
 
   tasks:
   - import_tasks: tasks/create_students.yml
+    #when: "'a27' in ansible_hostname"
   - import_tasks: tasks/restart_lightdm.yml
+    #when: "'a27' == ansible_hostname"
