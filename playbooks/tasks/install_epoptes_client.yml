@@ -24,5 +24,5 @@
 
   - name: Fetch the OpenSSL certificate from the server
     when: service.status.LoadState == 'loaded'
-    command: cd && epoptes-client -c
+    shell: cd && epoptes-client -c
     register: epoptes_fetch_SSL_cert
