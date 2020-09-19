@@ -11,6 +11,6 @@
       system: no             # Defaults to no
       createhome: yes        # Defaults to yes
       home: /home/{{ item.name }}       # Defaults to /home/<username>
-    with_items: "{{  students  }}"
+    with_items: "{{ students }}"
 
   - import_tasks: restart_lightdm.yml
