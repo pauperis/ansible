@@ -1,3 +1,4 @@
 ---
     packages:
         - name: minecraft-installer
+        - name: pacman
