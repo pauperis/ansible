@@ -3,5 +3,9 @@
   become: yes
 
   tasks:
-  - import_tasks: tasks/update_local_repositories_cache.yml
+ - import_tasks: tasks/update_local_repositories_cache.yml
+    when: "'a27' in ansible_hostname"
+  - import_tasks: tasks/install_python_apt.yml
+    when: "'a27' in ansible_hostname"
   - import_tasks: tasks/install_epoptes_client.yml
+    when: "'a27' in ansible_hostname"
