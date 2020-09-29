@@ -1,3 +1,15 @@
 ---
     packages:
         - name: arduino
+        - name: gimp
+        - name: libreoffice
+#packet tracer
+# team viewer
+
+    uris:
+        - name: google-chrome-stable
+          url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+          pkg: google-chrome-stable_current_amd64.deb
+        - name: teamviewer-x64
+          url: https://download.teamviewer.com/download/linux/teamviewer_amd64.deb 
+          pkg: teamviewer_amd64.deb
