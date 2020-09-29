@@ -6,3 +6,4 @@
 
   tasks:
   - import_tasks: tasks/install_packages.yml
+  - import_tasks: tasks/install_packages_from_url.yml
