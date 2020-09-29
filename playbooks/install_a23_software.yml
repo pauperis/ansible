@@ -1,0 +1,9 @@
+---
+- hosts: a23-alumnes
+  become: yes
+  vars_files:
+    - data/install_packages.yml
+
+  tasks:
+  - import_tasks: tasks/install_packages.yml
+  - import_tasks: tasks/install_packages_from_url.yml

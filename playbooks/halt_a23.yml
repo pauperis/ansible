@@ -1,0 +1,7 @@
+---
+- hosts: a23-alumnes
+  become: yes
+#  user: root
+
+  tasks:
+  - import_tasks: tasks/init_0.yml

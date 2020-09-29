@@ -1,0 +1,9 @@
+---
+- hosts: a23-alumnes
+  become: yes
+  vars_files:
+    - users/students.yml
+
+  tasks:
+  - import_tasks: tasks/create_students.yml
+  - import_tasks: tasks/restart_lightdm.yml
