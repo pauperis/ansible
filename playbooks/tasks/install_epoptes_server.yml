@@ -8,5 +8,5 @@
 
   - name: Add regular users to epoptes group
     when: service.status.LoadState == 'loaded'
-    command: gpasswd -a pau epoptes
+    command: gpasswd -a pau david lidia daniel edu epoptes
     register: gpasswd
