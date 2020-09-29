@@ -2,7 +2,7 @@
 - hosts: a27-alumnes
   become: yes
   vars_files:
-    - users/students.yml
+    - data/students.yml
 
   tasks:
   - import_tasks: tasks/create_students.yml
