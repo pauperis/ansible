@@ -19,10 +19,11 @@
     lineinfile:
       path: /etc/hosts
       state: present
-      regexp: '^192.168.3.35 server smx-HP-Compaq-8200-Elite-SFF-PC'
-      line: '192.168.3.35 server smx-HP-Compaq-8200-Elite-SFF-PC'
+      regexp: '^192.168.3.54 server smx-HP-Compaq-8200-Elite-SFF-PC'
+      line: '192.168.3.54 server smx-HP-Compaq-8200-Elite-SFF-PC'
 
   - name: Fetch the OpenSSL certificate from the server
     when: service.status.LoadState == 'loaded'
+    #command: cd && epoptes-client -c
     shell: cd && epoptes-client -c
     register: epoptes_fetch_SSL_cert
