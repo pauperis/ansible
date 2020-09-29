@@ -1,0 +1,4 @@
+  - name: Install from URL
+#    shell: wget --quiet --output-document=- https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb | dpkg --install -
+    shell: curl -sLO  item.url && sudo dpkg -i item.pkg && rm -fr item.pkg
+    with_items: "{{  uris  }}"
